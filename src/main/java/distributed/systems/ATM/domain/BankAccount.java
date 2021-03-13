@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Getter
@@ -26,6 +26,6 @@ public class BankAccount {
     private BigDecimal balance;
 
     @ManyToOne
-    @NotNull
+    @NonNull
     private User user;
 }
