@@ -31,11 +31,7 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToMany(
-            targetEntity = BankAccount.class,
-            mappedBy = "user",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-    private List<BankAccount> accounts = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bank_account_id", referencedColumnName = "id")
+    private BankAccount account;
 }

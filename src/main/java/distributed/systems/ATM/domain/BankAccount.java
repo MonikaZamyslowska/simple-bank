@@ -25,7 +25,6 @@ public class BankAccount {
     @Column(name = "balance")
     private BigDecimal balance;
 
-    @ManyToOne
-    @NonNull
+    @OneToOne(mappedBy = "account")
     private User user;
 }

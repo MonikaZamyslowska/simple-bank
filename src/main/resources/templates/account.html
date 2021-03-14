@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Account details</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <p>
+        Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+    </p>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<div>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>Bank account number</th>
+            <th>E-mail</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${bank_account_number}">Bank account number</td>
+            <td th:text="${user.email}">E-mail</td>
+            <td th:text="${user.name}">First Name</td>
+            <td th:text="${user.lastname}">Last Name</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
