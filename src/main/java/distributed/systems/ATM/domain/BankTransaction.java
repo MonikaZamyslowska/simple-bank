@@ -10,7 +10,7 @@ import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -23,7 +23,6 @@ public class BankTransaction {
     private long id;
 
     @Column(name = "receiver_account_num")
-    @NonNull
     private int receiverAccountNumber;
 
     @Column(name = "amount")
@@ -32,9 +31,10 @@ public class BankTransaction {
 
     @Column(name = "created_date")
     @CreatedDate
-    private Date createdDate;
+    private LocalDateTime createdDate;
 
     @Column(name = "transaction_type")
+    @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
 
     @ManyToOne

@@ -19,7 +19,7 @@ public class BankAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "account_number")
+    @Column(name = "account_number", unique = true)
     private int accountNumber;
 
     @Column(name = "balance")

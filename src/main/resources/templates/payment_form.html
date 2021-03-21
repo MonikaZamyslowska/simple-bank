@@ -12,11 +12,11 @@
     <div>
         <h1>Payment process</h1>
     </div>
-    <form th:action="@{/payment_process}" th:object="${bankTransaction}"
+    <form th:action="@{/transaction_process}" th:object="${bankTransaction}"
           method="post" style="max-width: 600px; margin: 0 auto;">
         <div class="m-3">
             <div class="form-group row">
-                <label class="col-4 col-form-label">From account number: </label>
+                <label class="col-4 col-form-label">To account number: </label>
                 <div class="col-8">
                     <input class="form-control" readonly
                            th:placeholder="${bankTransaction.senderBankAccount.accountNumber}"/>
@@ -26,10 +26,17 @@
             <div class="form-group row">
                 <label class="col-4 col-form-label">Amount (PLN): </label>
                 <div class="col-8">
-                    <input type="number" th:field="*{amount}" class="form-control"
-                           required th:max="${bankTransaction.senderBankAccount.balance}"/>
+                    <input type="number" th:field="*{amount}" class="form-control" required/>
                 </div>
             </div>
+
+            <input type="hidden" th:value="${bankTransaction.transactionType}"
+                   th:field="*{transactionType}"/>
+            <input type="hidden" th:value="${bankTransaction.createdDate}"
+                   th:field="*{createdDate}"/>
+            <input type="hidden" th:value="${bankTransaction.senderBankAccount}"
+                   th:field="*{senderBankAccount}"/>
+
             <div class="leftContainer">
                 <button type="submit" class="btn btn-primary">Perform</button>
             </div>
