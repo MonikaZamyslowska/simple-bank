@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -20,6 +21,7 @@ public class BankAccount {
     private Long id;
 
     @Column(name = "account_number", unique = true)
+    @Range(min = 100000000, max = 999999999)
     private int accountNumber;
 
     @Column(name = "balance")
@@ -30,4 +32,10 @@ public class BankAccount {
 
     @OneToMany(mappedBy = "senderBankAccount")
     private List<BankTransaction> bankTransactions;
+
+    //for tests only
+    public BankAccount(int accountNumber, BigDecimal balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
 }

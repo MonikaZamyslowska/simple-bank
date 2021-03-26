@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 public class BankTransaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "receiver_account_num")
     private int receiverAccountNumber;
@@ -40,4 +40,12 @@ public class BankTransaction {
     @ManyToOne
     @JoinColumn(name = "sender_account_id", nullable = false, referencedColumnName = "id")
     private BankAccount senderBankAccount;
+
+    //for tests only
+    public BankTransaction(@NonNull BigDecimal amount, int receiverAccountNumber, TransactionType transactionType, BankAccount senderBankAccount) {
+        this.amount = amount;
+        this.receiverAccountNumber = receiverAccountNumber;
+        this.transactionType = transactionType;
+        this.senderBankAccount = senderBankAccount;
+    }
 }
