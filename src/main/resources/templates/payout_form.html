@@ -27,7 +27,7 @@
                 <label class="col-4 col-form-label">Amount (PLN): </label>
                 <div class="col-8">
                     <input type="number" step=".01" th:field="*{amount}" class="form-control"
-                           required th:max="${bankTransaction.senderBankAccount.balance}"/>
+                           required th:min="0.01" th:max="${bankTransaction.senderBankAccount.balance}"/>
                 </div>
             </div>
 
