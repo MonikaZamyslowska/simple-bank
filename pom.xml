@@ -13,9 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ATM</name>
 	<description>First project for postive grade</description>
-	<properties>
-		<java.version>11</java.version>
-	</properties>
+	<packaging>jar</packaging>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -57,7 +57,7 @@ public class AppService {
         }
     }
 
-    private void doTransfer(BankTransaction bankTransaction) throws BankAccountNotFound, InterruptedException {
+    private void doTransfer(BankTransaction bankTransaction) throws InterruptedException, BankAccountNotFound {
         BankAccount receiverAccount = getBankAccountByAccountNum(bankTransaction.getReceiverAccountNumber());
         doPayment(receiverAccount, bankTransaction);
         doPayout(bankTransaction.getSenderBankAccount(), bankTransaction);
@@ -76,10 +76,10 @@ public class AppService {
         bankAccountRepository.save(bankAccount);
     }
 
-    public User getOwnerUser() {
+    public User getOwnerUser() throws Exception {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = auth.getName();
-        return userRepository.findUserByEmail(email).orElseThrow();
+        return userRepository.findUserByEmail(email).orElseThrow(() -> new Exception("User not found"));
     }
 
     public BankAccount getBankAccountByAccountNum(int accountNumber) throws BankAccountNotFound {
@@ -87,7 +87,7 @@ public class AppService {
                 .orElseThrow(() -> new BankAccountNotFound("Bank account not found. Please try again"));
     }
 
-    public BankTransaction createBankTransaction() {
+    public BankTransaction createBankTransaction() throws Exception {
         BankTransaction bankTransaction = new BankTransaction();
         User user = getOwnerUser();
         bankTransaction.setSenderBankAccount(user.getAccount());

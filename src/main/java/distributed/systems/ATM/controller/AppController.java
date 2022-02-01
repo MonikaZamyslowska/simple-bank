@@ -21,7 +21,7 @@ public class AppController {
     private static final Logger LOGGER = LoggerFactory.getLogger(AppController.class);
 
     @GetMapping("/account")
-    public String getOwnerUserDetails(Model model) {
+    public String getOwnerUserDetails(Model model) throws Exception {
         User user = service.getOwnerUser();
         BankAccount userAccount = user.getAccount();
         model.addAttribute("user", user);
@@ -30,7 +30,7 @@ public class AppController {
     }
 
     @GetMapping("/transfer")
-    public String showTransferForm(Model model) {
+    public String showTransferForm(Model model) throws Exception {
         BankTransaction bankTransaction = service.createBankTransaction();
         bankTransaction.setTransactionType(TransactionType.TRANSFER);
         model.addAttribute("bankTransaction", bankTransaction);
@@ -38,7 +38,7 @@ public class AppController {
     }
 
     @GetMapping("/payment")
-    public String showPaymentForm(Model model) {
+    public String showPaymentForm(Model model) throws Exception {
         BankTransaction bankTransaction = service.createBankTransaction();
         bankTransaction.setTransactionType(TransactionType.PAYMENT);
         model.addAttribute("bankTransaction", bankTransaction);
@@ -46,7 +46,7 @@ public class AppController {
     }
 
     @GetMapping("/payout")
-    public String showPayoutForm(Model model) {
+    public String showPayoutForm(Model model) throws Exception {
         BankTransaction bankTransaction = service.createBankTransaction();
         bankTransaction.setTransactionType(TransactionType.PAYOUT);
         model.addAttribute("bankTransaction", bankTransaction);
